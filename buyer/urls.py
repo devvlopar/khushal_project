@@ -5,19 +5,15 @@ urlpatterns = [
     path('', index, name='index'),
     path('about/', about, name='about'),
     path('faqs/', faqs, name='faqs'),
-    path('privacy/', privacy, name='home'),
-    path('register/', register, name='register'),
-    path('otp/', otp, name='otp'),
-    path('login/', login, name="login"),
-    path('logout/', logout, name="logout"),
-
+    path('privacy/', privacy, name="privacy"),
+    path('term/', terms , name="terms"),
+    path('add_row/', add_row, name="add_row")
     
+
+   
 ]
 
-#models, database tables
 
-# SQL : structured query language
-# ORM : Object Relational Mapping
 
 #html : structure
 #css : styles/ looks

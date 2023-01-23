@@ -9,6 +9,7 @@ class Buyer(models.Model):
     password = models.CharField(max_length=70)
     address = models.TextField(max_length=500)
     mobile = models.CharField(max_length=15)
+    gender = models.CharField(max_length=10, null=True, blank=True)
 
 
 
