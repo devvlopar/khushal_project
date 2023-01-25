@@ -29,3 +29,11 @@ def add_row(request):
         gender = 'male'
     )
     return HttpResponse('row create thai gai')
+
+
+def register(request):
+    if request.method == 'GET':
+        return render(request, 'register.html')
+    else:
+        pass
+   
