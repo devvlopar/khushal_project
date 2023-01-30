@@ -8,7 +8,9 @@ urlpatterns = [
     path('privacy/', privacy, name="privacy"),
     path('term/', terms , name="terms"),
     path('add_row/', add_row, name="add_row"),
-    path('register/', register, name='register')
+    path('register/', register, name='register'),
+    path('otp/', otp, name='otp')
+
     
 
    

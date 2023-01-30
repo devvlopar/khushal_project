@@ -40,29 +40,16 @@
 						<span class="fa fa-envelope-o" aria-hidden="true"></span>
 					</div>
 					<div class="modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign Up</h3>
-						<p>
-							Come join the Grocery Shoppy! Let's set up your Account.
-						</p>
-						<form action="{% url 'register' %}" method="post">
-							{% csrf_token %}
+						<h3 class="agileinfo_sign">OTP Verification</h3>
+						
+						<form action="{% url 'otp' %}" method="post">
+                            {% csrf_token %}
 							{{msg}}
-							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="First Name" name="first_name" required="">
-							</div>
-                            <div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Last Name" name="last_name" required="">
-							</div>
+						
 							<div class="styled-input">
-								<input type="email" placeholder="E-mail" name="email" required="">
+								<input type="password" placeholder="Enter Your OTP" name="u_otp" id="password2" required="">
 							</div>
-							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" id="password1" required="">
-							</div>
-							<div class="styled-input">
-								<input type="password" placeholder="Confirm Password" name="repassword" id="password2" required="">
-							</div>
-							<input type="submit" value="Register">
+							<input type="submit" value="Verify OTP">
 						</form>
 						<p>
 							<a href="#">By clicking register, I agree to your terms</a>
