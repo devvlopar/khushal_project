@@ -7,7 +7,8 @@ from django.conf import settings
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    buyer_row = Buyer.objects.get(email = request.session['email'])
+    return render(request, 'index.html', {'user_data':buyer_row})
 
 def about(request):
     return render(request, 'about.html')
@@ -69,3 +70,27 @@ def otp(request):
         return render(request, 'register.html', {'msg': 'Account created successfully!!'})
     else:
         return render(request, 'otp.html', {'msg': 'Wrong OTP enter again!!'})
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        try:
+            #email check thay che
+            buyer_row = Buyer.objects.get(email = request.POST['email'])
+            
+            #password check thay chhe
+            # request.POST['password'] ###aa password tame login page ma enter karyo hase
+            # buyer_row.password ###aa password database wado chhe
+            if request.POST['password'] == buyer_row.password:
+                #password sacho enter karyo chhe
+                request.session['email'] = request.POST['email'] #login thai gayu/ session naam na glass ma email(je login na page par enter karyo hato e) mukaai gayo
+                return render(request, 'index.html', {'user_data':buyer_row})
+            else:
+                return render(request, 'login.html', {'msg': 'Wrong Password!!'})
+            
+        except:
+            #jyare email madyo nathi
+            return render(request, 'login.html',{'msg':'email is not registered!!'})
+
+        

@@ -6,10 +6,11 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('faqs/', faqs, name='faqs'),
     path('privacy/', privacy, name="privacy"),
-    path('term/', terms , name="terms"),
+    path('term/', terms , name="ei"),
     path('add_row/', add_row, name="add_row"),
     path('register/', register, name='register'),
-    path('otp/', otp, name='otp')
+    path('otp/', otp, name='otp'),
+    path('login/',login,name='login')
 
     
 
