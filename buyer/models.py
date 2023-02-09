@@ -11,6 +11,8 @@ class Buyer(models.Model):
     mobile = models.CharField(max_length=15)
     gender = models.CharField(max_length=10, null=True, blank=True)
 
+    def __str__(self):
+        return self.email
 
 
 

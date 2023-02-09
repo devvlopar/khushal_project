@@ -1,17 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Buyer
+# from .models import Buyer
 from django.core.mail import send_mail
 from random import randrange
 from django.conf import settings
 # Create your views here.
 
 def index(request):
-    buyer_row = Buyer.objects.get(email = request.session['email'])
-    return render(request, 'index.html', {'user_data':buyer_row})
+    try:
+        # buyer_row = Buyer.objects.get(email = request.session['email'])
+        return render(request, 'index.html', {'user_data':buyer_row})
+    except:
+        return render(request, 'index.html')
 
 def about(request):
-    return render(request, 'about.html')
+    # buyer_row = Buyer.objects.get(email = request.session['email'])
+    return render(request, 'about.html', {'user_data': buyer_row})
 
 def faqs(request):
     return render(request, 'faqs.html')
@@ -40,7 +44,7 @@ def register(request):
         return render(request, 'register.html')
     else:
         try:
-            Buyer.objects.get(email = request.POST['email'])
+            # Buyer.objects.get(email = request.POST['email'])
             return render(request, 'register.html', {'msg': 'Email Is Already registered!!'})
         except:
             if request.POST['password'] == request.POST['repassword']:
@@ -93,4 +97,10 @@ def login(request):
             #jyare email madyo nathi
             return render(request, 'login.html',{'msg':'email is not registered!!'})
 
-        
+
+def logout(request):
+    # session mathi email kadhvano code 
+    del request.session['email']
+
+    # ab yahan se index funciton ki jawab daari hai
+    return redirect('index')
