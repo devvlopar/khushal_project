@@ -8,3 +8,6 @@ class Seller(models.Model):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=50)
     pic = models.FileField(upload_to= 'profile_pics', default='sad.jpg')
+
+    def __str__(self):
+        return self.email
