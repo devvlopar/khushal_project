@@ -11,3 +11,15 @@ class Seller(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Product(models.Model):
+    product_name = models.CharField(max_length=50)
+    des = models.TextField(max_length=255)
+    price = models.FloatField(default=10.0)
+    product_stock = models.IntegerField(default=0)
+    pic = models.FileField(default='sad.jpg', upload_to='product_pics')
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.product_name

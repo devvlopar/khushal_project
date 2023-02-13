@@ -64,4 +64,29 @@ def seller_logout(request):
 
 def seller_edit_profile(request):
     seller_obj = Seller.objects.get(email = request.session['seller_email'])
-    return render(request, 'seller_edit_profile.html',{'seller_data': seller_obj})
+    if request.method == 'GET':
+        return render(request, 'seller_edit_profile.html',{'seller_data': seller_obj})
+    else:
+        seller_obj.full_name = request.POST['full_name']
+        seller_obj.address = request.POST['address']
+        seller_obj.gst_no = request.POST['gst_no']
+        seller_obj.pic = request.FILES['pic']
+        seller_obj.save() #database ma actual ma change karva mate call karvu pade
+        return redirect('seller_edit_profile')
+
+
+def add_product(request):
+    seller_obj = Seller.objects.get(email = request.session['seller_email'])
+    if request.method == 'GET':
+        return render(request, 'add_product.html', {'seller_data':seller_obj})
+    else:
+        #ek product db ma add karishu
+        Product.objects.create(
+            product_name = request.POST['product_name'],
+            des = request.POST['des'],
+            price = request.POST['price'],
+            product_stock = request.POST['product_stock'],
+            pic = request.FILES['pic'],
+            seller = seller_obj
+        )
+        return redirect('add_product')

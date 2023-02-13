@@ -24,6 +24,9 @@
 
     <!-- Main content -->
     <section class="content">
+
+    <form action="{% url 'seller_edit_profile' %}" method="post" enctype="multipart/form-data" >
+      {% csrf_token %}
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary">
@@ -38,30 +41,26 @@
             </div>
             <div class="card-body">
               <div class="form-group">
-                <label for="inputName">Project Name</label>
-                <input type="text" id="inputName" class="form-control" value="AdminLTE">
+                <label for="inputName">Full Name</label>
+                <input type="text" id="inputName" class="form-control" name="full_name" value="{{seller_data.full_name}}">
               </div>
               <div class="form-group">
-                <label for="inputDescription">Project Description</label>
-                <textarea id="inputDescription" class="form-control" rows="4">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</textarea>
+                <label for="inputName">GST Number</label>
+                <input type="text" id="inputName" class="form-control" name="gst_no" value="{{seller_data.gst_no}}">
               </div>
               <div class="form-group">
-                <label for="inputStatus">Status</label>
-                <select id="inputStatus" class="form-control custom-select">
-                  <option disabled>Select one</option>
-                  <option>On Hold</option>
-                  <option>Canceled</option>
-                  <option selected>Success</option>
-                </select>
+                <label for="inputDescription">Address</label>
+                <textarea id="inputDescription" name="address" class="form-control" rows="4">{{seller_data.address}}</textarea>
               </div>
               <div class="form-group">
-                <label for="inputClientCompany">Client Company</label>
-                <input type="text" id="inputClientCompany" class="form-control" value="Deveint Inc">
+                <label for="inputName">Email</label>
+                <input type="email" class="form-control" id="inputName" name="email" value="{{seller_data.email}}"  disabled>
               </div>
               <div class="form-group">
-                <label for="inputProjectLeader">Project Leader</label>
-                <input type="text" id="inputProjectLeader" class="form-control" value="Tony Chicken">
+                <label for="inputClientCompany">Profile Picture</label>
+                <input type="file" id="inputClientCompany" class="form-control" name="pic">
               </div>
+              
             </div>
             <!-- /.card-body -->
           </div>
@@ -71,9 +70,10 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <input type="submit" value="Save Changes" class="btn btn-success ">
+          <input type="submit" value="Save Changes" >
         </div>
       </div>
+    </form>
     </section>
     <!-- /.content -->
   </div>
