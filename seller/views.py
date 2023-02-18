@@ -90,3 +90,8 @@ def add_product(request):
             seller = seller_obj
         )
         return redirect('add_product')
+    
+def mere_products(request):
+    s_obj = Seller.objects.get(email = request.session['seller_email'])
+    my_pros = Product.objects.filter(seller = s_obj )
+    return render(request, 'my_products.html', {'seller_data': s_obj, 'my_all_product':my_pros})

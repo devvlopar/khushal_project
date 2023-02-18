@@ -21,5 +21,5 @@ class Product(models.Model):
     pic = models.FileField(default='sad.jpg', upload_to='product_pics')
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.product_name

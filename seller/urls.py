@@ -8,6 +8,9 @@ urlpatterns = [
     path('seller_logout/', seller_logout, name='seller_logout'),
     path('seller_edit_profile/', seller_edit_profile, name='seller_edit_profile'),
     path('add_product/', add_product, name='add_product'),
+    # path(CHROME browser ma URL bar, views ma function nu naam, name= html pages par {% url 'url_name' %})
+    path('my_product/', mere_products, name='my_product'),
+
 
 
 

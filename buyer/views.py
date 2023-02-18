@@ -1,21 +1,28 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-# from .models import Buyer
+from .models import Buyer
 from django.core.mail import send_mail
 from random import randrange
 from django.conf import settings
+from seller.models import *
 # Create your views here.
 
 def index(request):
+    all_pros = Product.objects.all()
     try:
-        # buyer_row = Buyer.objects.get(email = request.session['email'])
-        return render(request, 'index.html', {'user_data':buyer_row})
+        #jyare login karel hoy
+        buyer_row = Buyer.objects.get(email = request.session['email'])
+        return render(request, 'index.html', {'user_data':buyer_row, 'all_products':all_pros})
     except:
-        return render(request, 'index.html')
+        #jyare login nathi karyu
+        return render(request, 'index.html', {'all_products': all_pros})
 
 def about(request):
-    # buyer_row = Buyer.objects.get(email = request.session['email'])
-    return render(request, 'about.html', {'user_data': buyer_row})
+    try:
+        buyer_row = Buyer.objects.get(email = request.session['email'])
+        return render(request, 'about.html', {'user_data': buyer_row})
+    except:
+        return render(request, 'about.html')
 
 def faqs(request):
     return render(request, 'faqs.html')
@@ -89,7 +96,7 @@ def login(request):
             if request.POST['password'] == buyer_row.password:
                 #password sacho enter karyo chhe
                 request.session['email'] = request.POST['email'] #login thai gayu/ session naam na glass ma email(je login na page par enter karyo hato e) mukaai gayo
-                return render(request, 'index.html', {'user_data':buyer_row})
+                return redirect('index')
             else:
                 return render(request, 'login.html', {'msg': 'Wrong Password!!'})
             
@@ -104,3 +111,7 @@ def logout(request):
 
     # ab yahan se index funciton ki jawab daari hai
     return redirect('index')
+
+
+def cart(request):
+    return render(request, 'cart.html')

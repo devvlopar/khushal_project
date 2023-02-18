@@ -64,29 +64,29 @@
                   </tr>
               </thead>
               <tbody>
-                <!-- {% for single_product in seller_products %} -->
+                {% for i in my_all_product %}
                 <tr>
                       <td>
-                          <!-- {{single_product.product_name}} -->
+                          {{i.product_name}}
                       </td>
                       <td class="project_progress">
-                        <!-- {{single_product.des}} -->
+                       {{i.des}}
                     </td>
                       <td>
                           <ul class="list-inline">
                               
                               
                               <li class="list-inline-item">
-                                  <img alt="Avatar" width="30px" class="table-avatar" src="">
+                                  <img alt="Avatar" width="30px" class="table-avatar" src="{{i.pic.url}}">
                               </li>
                           </ul>
                       </td>
                       
                       <td class="project-state">
-                          <!-- ${{single_product.price}} -->
+                          {{i.price}}
                       </td>
                       <td class="project-state">
-                        <!-- ${{single_product.product_stock}} -->
+                       {{i.product_stock}}
                     </td>
 
                       <td class="project-actions ">
@@ -103,8 +103,7 @@
                           </a>
                       </td>
                 </tr>
-                <!-- {% endfor %} -->
-                
+                {% endfor %}
               </tbody>
           </table>
         </div>
