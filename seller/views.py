@@ -95,3 +95,18 @@ def mere_products(request):
     s_obj = Seller.objects.get(email = request.session['seller_email'])
     my_pros = Product.objects.filter(seller = s_obj )
     return render(request, 'my_products.html', {'seller_data': s_obj, 'my_all_product':my_pros})
+
+
+def product_delete(request, pk):
+    p_obj = Product.objects.get(id = pk)
+    p_obj.delete()
+    return redirect('my_product')
+
+
+def product_edit(request):
+    pass
+    # p_obj = Product.objects.get(id = pid)
+    # p_obj.des = 'qwertyuio'
+    # p_obj.price = 213
+    # p_obj.save()
+
