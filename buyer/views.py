@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Buyer
+from .models import *
 from django.core.mail import send_mail
 from random import randrange
 from django.conf import settings
@@ -114,4 +114,28 @@ def logout(request):
 
 
 def cart(request):
-    return render(request, 'cart.html')
+    u1 = Buyer.objects.get(email = request.session['email'])
+    c_list = Cart.objects.filter(buyer = u1)
+    t_amount = 0
+    for i in c_list:
+        t_amount += i.price
+    
+    return render(request, 'cart.html' , {'user_data':u1, 'my_cart_data': c_list, 'total_amount':t_amount})
+
+
+def add_to_cart(request, pk):
+    p_obj = Product.objects.get(id = pk)
+    b1 = Buyer.objects.get(email = request.session['email'])
+    Cart.objects.create(
+        product_name = p_obj.product_name,
+        price = p_obj.price,
+        pic = p_obj.pic,
+        buyer = b1
+    )
+    return redirect('index')
+
+
+def del_cart_item(request, c_item):
+    c_obj = Cart.objects.get(id = c_item)
+    c_obj.delete()
+    return redirect('cart')

@@ -10,7 +10,7 @@ urlpatterns = [
     path('add_product/', add_product, name='add_product'),
     # path(CHROME browser ma URL bar, views ma function nu naam, name= html pages par {% url 'url_name' %})
     path('my_product/', mere_products, name='my_product'),
-    path('product_edit/', product_edit, name='product_edit'),
+    path('product_edit/<int:pk>', product_edit, name='product_edit'),
     path('product_delete/<int:pk>', product_delete, name='product_delete'),
 
 

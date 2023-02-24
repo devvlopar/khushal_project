@@ -103,10 +103,19 @@ def product_delete(request, pk):
     return redirect('my_product')
 
 
-def product_edit(request):
-    pass
-    # p_obj = Product.objects.get(id = pid)
-    # p_obj.des = 'qwertyuio'
-    # p_obj.price = 213
-    # p_obj.save()
+def product_edit(request, pk):
+    p_obj = Product.objects.get(id = pk)
+    if request.method == 'GET':
+        seller_obj = Seller.objects.get(email = request.session['seller_email'])
+        return render(request, 'edit_product.html', {'seller_data':seller_obj, 'product_data': p_obj})
+    else:
+        p_obj.product_name = request.POST['product_name']
+        p_obj.des = request.POST['des']
+        p_obj.price = request.POST['price']
+        p_obj.product_stock = request.POST['product_stock']
+        p_obj.pic = request.FILES['pic']
+        p_obj.save()
+        return redirect('my_product')
+
+
 
