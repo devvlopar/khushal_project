@@ -145,5 +145,11 @@ EMAIL_HOST_PASSWORD = 'ywchmeusvnfvtfgb'
 MEDIA_URL = '/files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
 
-RAZOR_KEY_ID = 'rzp_test_pcJiySlbW0foGY'
-RAZOR_KEY_SECRET = 'JyjOpfwsSgo3LJxWx7vv9JgC'
+
+with open('/home/devv/docs/python_batches/3rd_Aug/khushal_project/rzp.csv', 'r') as f1:
+    list1 = f1.readlines()
+    str1 = list1[-1]
+    f_list = str1.split(",")
+
+RAZOR_KEY_ID = f_list[0]
+RAZOR_KEY_SECRET = f_list[1][:-1]
